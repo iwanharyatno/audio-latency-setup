@@ -1,0 +1,40 @@
+services:
+  nginx-direct:
+    image: nginx:alpine
+    container_name: audio-direct-http
+    ports:
+      - "8030:80"
+    volumes:
+      - ./A-direct-http/audio_direct.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./A-direct-http/samples:/var/www/audio:ro
+      - ./A-direct-http/logs:/var/log/nginx
+    networks:
+      - audio-test-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  nginx-hls:
+    image: nginx:alpine
+    container_name: audio-hls-chunked
+    ports:
+      - "8031:80"
+    volumes:
+      - ./B-hls-chunked/audio_hls.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./B-hls-chunked/samples:/var/www/hls:ro
+      - ./B-hls-chunked/logs:/var/log/nginx
+    networks:
+      - audio-test-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  audio-test-network:
+    driver: bridge
