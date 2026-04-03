@@ -9,7 +9,19 @@ const dnsTrend = new Trend('dns_ms');
 const errorRate = new Rate('error_rate');
 const requestCounter = new Counter('request_count');
 
-const BASE_URL = 'http://localhost:8030';
+const CONFIGS = {
+    cdn: {
+        baseUrl: 'http://audio-tests.jayacode.tech',
+        name: 'with_cdn'
+    },
+    noCdn: {
+        baseUrl: 'http://audio-tests-gray.jayacode.tech',
+        name: 'no_cdn'
+    }
+};
+
+const CONFIG = CONFIGS[__ENV.TEST_CONFIG] || CONFIGS.noCdn;
+const BASE_URL = CONFIG.baseUrl;
 
 const AUDIO_POOL = [
     'part_A_1.mp3',

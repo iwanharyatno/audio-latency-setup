@@ -5,5 +5,4 @@
 - Docker version 29.1.3, build f52814d
 
 # Container
-- nginx-direct: nginx:alpine
-- nginx-hls: nginx:alpine
+- nginx-audio: nginx:alpine

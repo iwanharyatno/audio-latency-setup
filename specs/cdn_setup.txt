@@ -1,0 +1,21 @@
+iwanharyatno@ihymachine:~$ nslookup audio-tests.jayacode.tech
+Server:         10.255.255.254
+Address:        10.255.255.254#53
+
+Non-authoritative answer:
+Name:   audio-tests.jayacode.tech
+Address: 104.21.55.145
+Name:   audio-tests.jayacode.tech
+Address: 172.67.149.35
+Name:   audio-tests.jayacode.tech
+Address: 2606:4700:3033::6815:3791
+Name:   audio-tests.jayacode.tech
+Address: 2606:4700:3037::ac43:9523
+
+iwanharyatno@ihymachine:~$ nslookup audio-tests-gray.jayacode.tech
+Server:         10.255.255.254
+Address:        10.255.255.254#53
+
+Non-authoritative answer:
+Name:   audio-tests-gray.jayacode.tech
+Address: 46.202.135.131

@@ -10,7 +10,19 @@ const dnsTrend = new Trend('dns_lookup_ms');      // CDN benefit proof (blocked)
 const connectionTrend = new Trend('connection_ms'); // TCP/TLS handshake
 const errorRate = new Rate('error_rate');
 
-const BASE_URL = 'http://localhost:8031'; // Using HLS port from docker-compose
+const CONFIGS = {
+    cdn: {
+        baseUrl: 'http://audio-tests.jayacode.tech',
+        name: 'with_cdn'
+    },
+    noCdn: {
+        baseUrl: 'http://audio-tests-gray.jayacode.tech',
+        name: 'no_cdn'
+    }
+};
+
+const CONFIG = CONFIGS[__ENV.TEST_CONFIG] || CONFIGS.noCdn;
+const BASE_URL = CONFIG.baseUrl;
 
 const AUDIO_POOL = [
     'part_A_1.mp3',
